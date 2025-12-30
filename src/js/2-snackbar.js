@@ -11,7 +11,7 @@ function handlerSubmit(event) {
   const state = form.elements.state.value;
 
   createPromise(delay, state)
-    .then(value =>
+    .then(delay =>
       iziToast.show({
         message: `Fulfilled promise in ${delay}ms`,
         messageColor: ' #fff',
@@ -19,7 +19,7 @@ function handlerSubmit(event) {
         position: 'topRight',
       })
     )
-    .catch(value => {
+    .catch(delay => {
       iziToast.show({
         message: `Rejected promise in ${delay}ms`,
         messageColor: ' #fff',
@@ -33,7 +33,7 @@ function createPromise(delay, state) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
-        resolve(state);
+        resolve(delay);
       } else {
         reject(delay);
       }
